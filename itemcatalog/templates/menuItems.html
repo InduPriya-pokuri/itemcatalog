@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+	{% if 'username' in session %}
+		<a href="{{ url_for('addMenuItems', rest_id=restaurant_id ) }}" class="btn btn-primary btn-sm"><span class="fas fa-plus"></span></a>
+	{% endif %}
+	<table class="table table-bordered">
+		<tr class="bg-primary text-white">
+			<th>Item Name</th>
+			<th>Price</th>
+			<th>Description</th>
+			<th colspan="2" class="text-center">Operations</th>
+		</tr>
+		{% if items %}
+			{% for item in items %}
+				{% if item %}
+				<tr>
+					<td>{{ item.name }}</td>
+					<td>{{ item.price }}</td>
+					<td>{{ item.description }}</td>
+					{% if item.owner_id == session.user_id %}
+						<td><a href="{{ url_for('editMenuItems',item_id=item.id ) }}" class="btn btn-info btn-sm">Edit</a></td>
+						<td><a href="{{ url_for('confirmDeleteMenu', item_id=item.id ) }}" class="btn btn-danger btn-sm">Delete</a></td>
+					{% else %}
+						<td colspan="2">No Operation...!</td>
+					{% endif %}
+				</tr>
+				{% else %}
+					<p>No Items Found...! in Restaurant</p>
+				{% endif %}	
+			{% endfor %}
+		{% else %}
+			<tr><td colspan="5">No Items Found</td></tr>
+		{% endif %}
+	</table>
+{% endblock %}

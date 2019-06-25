@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<br/>
+<div class="container">
+	{% if 'username' in session %}
+		<a href="{{ url_for('addRestaurant') }}" class="fas fa-plus btn btn-primary float-right"></a><hr/>
+	{% endif %}
+	{% if restaurants %}
+		{% for restaurant in restaurants %}
+			<h3>{{ restaurant.id }} | {{ restaurant.name }}</h3>
+		{% endfor %}
+	{% elif myRestaurants %}
+		<div class="row">
+			{% for restaurant in myRestaurants %}
+				<div class="card col-sm-3 text-white mr-2 mt-5" >
+					{% if not restaurant.image  %}
+						<img src="/static/imgs/noImage.png" class="card-img-top" alt="..." style="height: 150px;width: 100%;">
+				  	{% else %}
+				  		<img src="/static/upload_files/{{ restaurant.image }}" class="card-img-top" alt="..." style="height: 150px;width: 100%;">				  		
+				  	{% endif %}
+				  <div class="card-body">
+				    <a href="{{ url_for('RestaurantMenuItems', restaurant_id=restaurant.id) }}"><h5 class="card-title text-dark">{{ restaurant.name }}</h5></a>
+				    {% if restaurant.owner_id == session.user_id %}
+				    	<a href="{{ url_for('editRestaurant', rest_id=restaurant.id )}}" class="fas fa-edit btn btn-info" ></a>
+				    	<a href="{{ url_for('confirmDeleteRestaurant',rest_id=restaurant.id) }}" class="fas fa-trash btn btn-danger float-right" ></a>
+				    {% endif %}
+				    </div>
+				</div>
+			{% endfor %}			
+		</div>
+	{% else %}
+		<p>I Have Data Restaurant</p>
+	{% endif %}	
+</div>
+
+{% endblock %}

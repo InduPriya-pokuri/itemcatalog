@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+	<form action="{{ url_for('editRestaurant', rest_id=editRest.id ) }}" method="post" enctype="multipart/form-data">
+		<label>Edit Name :</label>
+		<input type="text" name="name" value="{{ editRest.name }}" class="form-control" placeholder="Edit Name :" required="required"><br/>
+		<div class="border p-2" >
+			<img src="/static/upload_files/{{ editRest.image }}" alt="NoImageFOund" style="width: 80px; height: 80px;">Your Restaurant Image
+		</div><br/>
+		<input type="file" name="photo" id="photo" required="required"><br/><br/>
+		<input type="submit" value="Update" class="btn btn-info">		
+	</form>	
+</div>
+{% endblock %}

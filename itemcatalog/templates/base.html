@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!-- Google Sign-in (new) -->
+  <meta name="google-signin-client_id" content="422372335975-o6b8dtfif30h4ik0tcmakhp28j3nf7of.apps.googleusercontent.com">
+
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="/static/scripts/jquery-3.3.1.slim.min.js"></script>
+  <script src="/static/scripts/popper.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+
+  <!-- <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+  </style> -->
+
+</head>
+<body>
+	<header>
+		{% include 'header.html' %}
+	</header>
+
+
+	<div>
+		{% with messages= get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category,message in messages %}
+					<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+					  <strong>{{ message }}</strong>
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}		
+	</div>
+
+
+
+
+	<div id="content">
+		{% block content %}
+								
+		{% endblock %}		
+	</div>
+	
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

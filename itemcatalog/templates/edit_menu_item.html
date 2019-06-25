@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="{{ url_for('editMenuItems', item_id=itemsData.id ) }}" method="post" class="col-md-3 offset-md-3 mt-5">
+	<input type="text" name="name" class="form-control" placeholder="Enter Item Name :" value="{{ itemsData.name }}"  required="required" ><br>
+	<input type="text" name="price" class="form-control" placeholder="Price:" value="{{ itemsData.price }}"><br>
+	<textarea name="description" class="form-control" placeholder="Description:" >{{ itemsData.description }}</textarea>
+	<input type="text" name="restId" class="form-control" readonly="readonly" value="{{ itemsData.restaurant_id }}"><br>
+
+	<input type="submit" class="btn btn-primary btn-sm" value="Edit">	
+	<input type="reset" class="btn btn-primary btn-sm" value="Clear">	
+</form>
+{% endblock %}

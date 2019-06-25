@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="{{ url_for('addMenuItems',rest_id=rest_id ) }}" method="post" class="col-md-3 offset-md-3 mt-5">
+	<input type="text" name="name" class="form-control" placeholder="Enter Item Name :" required="required" ><br>
+	<input type="text" name="price" class="form-control" placeholder="Price:"><br>
+	<textarea name="description" class="form-control" placeholder="Description:" ></textarea>
+	<input type="hidden" name="restId" class="form-control" readonly="readonly" value ="{{ rest_id }}"><br>
+
+	<input type="submit" class="btn btn-primary btn-sm" value="Add">	
+	<input type="reset" class="btn btn-primary btn-sm" value="Clear">	
+</form>
+{% endblock %}
